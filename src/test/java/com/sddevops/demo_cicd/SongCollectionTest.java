@@ -46,27 +46,49 @@ class SongCollectionTest {
 
 	@Test
 	void testAddSong() {
-		fail("Not yet implemented");
+		SongCollection collectionTwo = new SongCollection(1);
+		collectionTwo.addSong(s1);
+		assertEquals(collectionTwo.getSongs().size(), 1);
+		collectionTwo.addSong(s2);
+		assertEquals(collectionTwo.getSongs().size(), 1);
 	}
 
 	@Test
 	void testSortSongsByTitle() {
-		fail("Not yet implemented");
+		List<Song> sortedCollection = sc.sortSongsByTitle();
+		assertEquals(sortedCollection.get(0).getId(), "003");
+		assertEquals(sortedCollection.get(1).getId(), "002");
+		assertEquals(sortedCollection.get(2).getId(), "004");
+		assertEquals(sortedCollection.get(3).getId(), "001");
 	}
 
 	@Test
 	void testSortSongsBySongLength() {
-		fail("Not yet implemented");
+		sc.addSong(s1);
+		List<Song> sortedCollectionByLength = sc.sortSongsBySongLength();
+		assertEquals(sortedCollectionByLength.get(0).getId(), "001");
+		assertEquals(sortedCollectionByLength.get(1).getId(), "001");
+		assertEquals(sortedCollectionByLength.get(2).getId(), "002");
+		assertEquals(sortedCollectionByLength.get(3).getId(), "004");
+		assertEquals(sortedCollectionByLength.get(4).getId(), "003");
 	}
 
 	@Test
 	void testFindSongsById() {
-		fail("Not yet implemented");
+		Song findSongFirst = sc.findSongsById("001");
+		assertEquals(findSongFirst.getId(), "001");
+		
+		Song findSongSecond = sc.findSongsById("005");
+		assertEquals(findSongSecond, null);
 	}
 
 	@Test
 	void testFindSongByTitle() {
-		fail("Not yet implemented");
+		Song findSongFirst = sc.findSongByTitle("good 4 u");
+		assertEquals(findSongFirst.getId(), "001");
+		
+		Song findSongSecond = sc.findSongByTitle("005");
+		assertEquals(findSongSecond, null);
 	}
 
 }
