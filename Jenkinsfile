@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sh '''
                     echo "Start test"
-                    mvn test
+                    mvn install
                 '''
             }
         }
