@@ -27,7 +27,7 @@ pipeline {
 
         stage('build') {
             steps {
-                sh ''''
+                sh '''
                     echo "Start build"
                     mvn install -DskipTests
                 '''
