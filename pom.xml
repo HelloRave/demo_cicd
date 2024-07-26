@@ -22,9 +22,18 @@
 		<jacoco.version>0.8.7</jacoco.version>
 
 		<!-- SonarQube properties -->
+		<sonar.projectKey>demo_cicd</sonar.projectKey>
+		<sonar.projectName>demo_cicd</sonar.projectName>
+		<sonar.sources>src/main</sonar.sources>
+		<sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+		<sonar.language>java</sonar.language>
+		<sonar.test>src/test</sonar.test>
+		<sonar.junit.reportsPath>target/surefire-reports</sonar.junit.reportsPath>
+		<sonar.surefire.reportsPath>target/surefire-reports</sonar.surefire.reportsPath>
+		<sonar.jacoco.reportPath>target/jacoco.exec</sonar.jacoco.reportPath>
+		<sonar.java.binaries>target/classes</sonar.java.binaries>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<sonar.language>java</sonar.language>
 
 		<junit-jupiter.groupId>org.junit.jupiter</junit-jupiter.groupId>
 		<junit-jupiter.artifactId>junit-jupiter</junit-jupiter.artifactId>
