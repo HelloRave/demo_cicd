@@ -8,24 +8,30 @@ pipeline {
 
     stages {
         stage('clean') {
-            sh '''
-                echo "Start clean"
-                mvn clean
-            '''
+            steps {
+                sh '''
+                    echo "Start clean"
+                    mvn clean
+                '''
+            }
         }
 
         stage('test') {
-            sh '''
-                echo "Start test"
-                mvn test
-            '''
+            steps {
+                sh '''
+                    echo "Start test"
+                    mvn test
+                '''
+            }
         }
 
         stage('build') {
-            sh ''''
-                echo "Start build"
-                mvn install -DskipTests
-            '''
+            steps {
+                sh ''''
+                    echo "Start build"
+                    mvn install -DskipTests
+                '''
+            }
         }
     }
 }
