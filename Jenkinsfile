@@ -27,10 +27,12 @@ pipeline {
 
         stage('sonar') {
             steps {
-                sh '''
-                    echo "Performing sonar"
-                    mvn sonar:sonar
-                '''
+                withSonarQubeEnv(installationName: 'sonarqube-local') {
+                    sh '''
+                        echo "Performing sonar"
+                        mvn sonar:sonar
+                    '''
+                }
             }
         }
 
