@@ -25,6 +25,15 @@ pipeline {
             }
         }
 
+        stage('sonar') {
+            steps {
+                sh '''
+                    echo "Performing sonar"
+                    mvn sonar:sonar
+                '''
+            }
+        }
+
         stage('build') {
             steps {
                 sh '''
