@@ -22,8 +22,8 @@
 		<jacoco.version>0.8.7</jacoco.version>
 
 		<!-- SonarQube properties -->
-		<sonar.projectKey>demo_cicd</sonar.projectKey>
-		<sonar.projectName>demo_cicd</sonar.projectName>
+		<sonar.projectKey>demo-cicd</sonar.projectKey>
+		<sonar.projectName>demo-cicd</sonar.projectName>
 		<sonar.sources>src/main</sonar.sources>
 		<sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
 		<sonar.language>java</sonar.language>
