@@ -27,7 +27,7 @@ pipeline {
 
         stage('sonar') {
             steps {
-                withSonarQubeEnv(installationName: 'sonarqube-local', credentialsId: 'sonarqube-token') {
+                withSonarQubeEnv(installationName: 'sonarqube-local') {
                     sh '''
                         echo "Performing sonar"
                         mvn sonar:sonar
