@@ -17,7 +17,7 @@ pipeline {
 
     parameters {
         booleanParam(name: 'SONAR_QUALITY_GATE', defaultValue: true, description: 'Enable overall code quality check')
-        string(name: 'EMAIL_LIST', defaultValue: "${NOTIFY_USERS}", description: 'Email notifications to')
+        string(name: 'EMAIL_LIST', defaultValue: 'vxoweiwei@gmail.com', description: 'Email notifications to')
     }
 
     stages {
