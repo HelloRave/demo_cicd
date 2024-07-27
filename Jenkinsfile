@@ -68,8 +68,21 @@ pipeline {
     }
 
     post {
-        always {
-            mail to: "${params.EMAIL_LIST}", subject: "${env.PROJECT_NAME} - Build # ${env.BUILD_NUMBER} - ${env.BUILD_STATUS}!", body: "${env.PROJECT_NAME} - Build # ${env.BUILD_NUMBER} - ${env.BUILD_STATUS}:\n Check console output at ${env.BUILD_URL} to view the results."
+        failure {
+            mail to: "${params.EMAIL_LIST}",
+                subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} Failed!",
+                body: """
+                    <p>Check console output at <a href="${env.BUILD_URL}">here</a> to view the results.</p>
+                """,
+                mimeType: 'text/html'
+        }
+        success {
+            mail to: "${params.EMAIL_LIST}",
+                subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} Succeeded!",
+                body: """
+                    <p>Check console output at <a href="${env.BUILD_URL}">here</a> to view the results.</p>
+                """,
+                mimeType: 'text/html'
         }
     }
 }
