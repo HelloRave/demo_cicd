@@ -1,9 +1,21 @@
+def NOTIFY_USERS = 'vxoweiwei@gmail.com'
+
 pipeline {
     agent any
 
     tools {
         maven 'maven 3.9.8'
         jdk 'OpenJDK17'
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '1'))
+        disableConcurrentBuilds(abortPrevious: true)
+    }
+
+    parameters {
+        booleanParam(name: 'SONAR_QUALITY_GATE', defaultValue: true, description: 'Enable overall code quality check')
+        string(name: 'EMAIL_LIST', defaultValue: $NOTIFY_USERS, description: 'Email notifications to')
     }
 
     stages {
@@ -36,11 +48,10 @@ pipeline {
 
                 script {
                     def qualitygate = waitForQualityGate()
-                    if (qualitygate.status != "OK") {
+                    if (qualitygate.status != 'OK') {
                         error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
                     }
                 }
-
             }
         }
 
@@ -51,6 +62,12 @@ pipeline {
                     mvn install -DskipTests
                 '''
             }
+        }
+    }
+
+    post {
+        always {
+            mail to: ${params.EMAIL_LIST} subject: 'Jenkins build status'
         }
     }
 }
