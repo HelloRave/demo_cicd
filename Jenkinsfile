@@ -67,7 +67,7 @@ pipeline {
 
     post {
         always {
-            mail to: "${params.EMAIL_LIST}", subject: 'Jenkins build status'
+            mail to: "${params.EMAIL_LIST}", subject: "${env.PROJECT_NAME} - Build # ${env.BUILD_NUMBER} - ${env.BUILD_STATUS}!", body: "${env.PROJECT_NAME} - Build # ${env.BUILD_NUMBER} - ${env.BUILD_STATUS}:\n Check console output at ${env.BUILD_URL} to view the results."
         }
     }
 }
