@@ -27,11 +27,16 @@ pipeline {
 
         stage('sonar') {
             steps {
-                withSonarQubeEnv(installationName: 'sonarqube-local') {
+                withSonarQubeEnv(installationName: 'sonarqube-local', credentialsId: 'sonarqube-token') {
                     sh '''
                         echo "Performing sonar"
                         mvn sonar:sonar
                     '''
+                }
+
+                def qualitygate = waitForQualityGate()
+                if (qualitygate.status != "OK") {
+                    error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
                 }
             }
         }
