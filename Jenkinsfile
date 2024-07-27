@@ -67,7 +67,7 @@ pipeline {
 
     post {
         always {
-            mail to: ${params.EMAIL_LIST}, subject: 'Jenkins build status'
+            mail to: "${params.EMAIL_LIST}", subject: 'Jenkins build status'
         }
     }
 }
